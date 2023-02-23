@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider(
-        create: (context) => TestCubit()..loadData(),
+        create: (context) => TestCubit()..loadJson(),
         child: MyWidget(),
       ),
     );

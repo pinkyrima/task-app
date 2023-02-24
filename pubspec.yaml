@@ -21,6 +21,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_bloc: ^8.1.2
   url_launcher:
+  velocity_x:
+  provider:
 
 
 dev_dependencies:

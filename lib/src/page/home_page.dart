@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_app/src/cubit/test_cubit.dart';
 import 'package:task_app/src/page/demo.dart';
+import 'package:task_app/src/page/sender_info_screen.dart';
 import 'package:task_app/src/style/k_color.dart';
 import 'package:task_app/src/style/k_textStyle.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../model/test_model_2.dart';
 
@@ -54,7 +56,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<TestCubit, List<ConsignmentChargesRequestParams>>(
+      body: BlocBuilder<TestCubit, List<TaskModel>>(
         builder: (context, state) {
           if (state.isEmpty) {
             return const Center(
@@ -159,12 +161,24 @@ class _HomePageState extends State<HomePage> {
                   _sendingMails,
                 ),
                 const SizedBox(height: 5),
-                buildListTile('OID:', state[0].oid ?? '', Icons.person, () {}),
+                buildListTile(
+                    'OID:',
+                    state[0].consignmentChargesRequestParams![0].oid ?? '',
+                    Icons.person,
+                    () {}),
                 const SizedBox(height: 5),
-                buildListTile('Parent OID:', state[0].parentOid ?? '',
-                    Icons.perm_identity, () {}),
-                buildListTile('Length value:', state[0].lengthValue ?? '',
-                    Icons.perm_identity, () {}),
+                buildListTile(
+                    'Parent OID:',
+                    state[0].consignmentChargesRequestParams![0].parentOid ??
+                        '',
+                    Icons.perm_identity,
+                    () {}),
+                buildListTile(
+                    'Length value:',
+                    state[0].consignmentChargesRequestParams![0].lengthValue ??
+                        '',
+                    Icons.perm_identity,
+                    () {}),
                 const SizedBox(height: 40),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -175,20 +189,23 @@ class _HomePageState extends State<HomePage> {
                             foregroundColor: KColor.primary,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20))),
-                        onPressed: () {},
+                        onPressed: () {
+                          context.nextPage(const SenderInfoScreen());
+                        },
                         child: Text(
-                          'Go to Order',
+                          'Go to Sender Info',
                           style: KTextStyle.headline8
                               .copyWith(color: KColor.white),
                         )),
                   ),
                 ),
-                SizedBox(height: kBottomNavigationBarHeight,)
+                const SizedBox(
+                  height: kBottomNavigationBarHeight,
+                )
               ],
             );
           }
         },
-
       ),
     );
   }

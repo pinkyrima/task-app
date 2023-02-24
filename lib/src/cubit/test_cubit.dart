@@ -20,10 +20,13 @@ class TestCubit extends Cubit<List<TaskModel>> {
       final decodedJson = json.decode(jsonData);
       final data = TaskModel.fromJson(decodedJson);
 
-      final list = data.consignmentChargesRequestParams;
-      if (list != null) {
-        emit(list);
-      }
+      // final list = data.consignmentChargesRequestParams;
+      //  if (list != null) {
+      //    emit(data);
+      //  }
+      TaskModel task = TaskModel();
+      List<TaskModel> taskList = [data];
+      emit(taskList);
     } catch (e) {
       print(e);
       emit([]);

@@ -14,7 +14,7 @@ class MyWidget extends StatelessWidget {
         title: const Text('Task App'),
         centerTitle: true,
       ),
-      body: BlocBuilder<TestCubit, List<ConsignmentChargesRequestParams>>(
+      body: BlocBuilder<TestCubit, List<TaskModel>>(
         builder: (context, state) {
           if (state.isEmpty) {
             return const Center(
@@ -26,8 +26,8 @@ class MyWidget extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Card(
                     child: ListTile(
-                      title: Text(state[index].heightValue ?? ''),
-                      subtitle: Text(state[index].isVolumetricWeight ?? ''),
+                      title: Text(state[index].orderCnRequest?.homeDelivery ?? '',style: TextStyle(color: Colors.red,fontSize: 20),),
+                      subtitle: Text(state[index].senderInfo?.senderAddress ?? ''),
                     ),
                   );
                 });

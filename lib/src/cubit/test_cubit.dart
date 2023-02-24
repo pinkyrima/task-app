@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../model/test_model_2.dart';
 
-class TestCubit extends Cubit<List<ConsignmentChargesRequestParams>> {
+class TestCubit extends Cubit<List<TaskModel>> {
   TestCubit() : super([]);
 
   // void loadData() {
@@ -20,8 +20,6 @@ class TestCubit extends Cubit<List<ConsignmentChargesRequestParams>> {
       final decodedJson = json.decode(jsonData);
       final data = TaskModel.fromJson(decodedJson);
 
-      /// cubit ekhane chacce List<ConsignmentChargesRequestParam> ey type ta
-      /// tai amra datar modde nested ei type ta dibo, tobei amdader ui update hobe
       final list = data.consignmentChargesRequestParams;
       if (list != null) {
         emit(list);

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         create: (context) => TestCubit()..loadJsonData(),
-        child: MyWidget(),
+        child: HomePage(),
       ),
     );
   }

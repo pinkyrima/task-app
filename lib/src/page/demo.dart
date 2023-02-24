@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubit/test_cubit.dart';
-import '../model/test_model.dart';
+import '../model/test_model_2.dart';
 
 class MyWidget extends StatelessWidget {
   const MyWidget({super.key});
@@ -14,7 +14,7 @@ class MyWidget extends StatelessWidget {
         title: const Text('Task App'),
         centerTitle: true,
       ),
-      body: BlocBuilder<TestCubit, List<ConsignmentChargesRequestParam>>(
+      body: BlocBuilder<TestCubit, List<ConsignmentChargesRequestParams>>(
         builder: (context, state) {
           if (state.isEmpty) {
             return const Center(
@@ -24,9 +24,11 @@ class MyWidget extends StatelessWidget {
             return ListView.builder(
                 itemCount: state.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(state[index].heightValue),
-                    subtitle: Text(state[index].isVolumetricWeight),
+                  return Card(
+                    child: ListTile(
+                      title: Text(state[index].heightValue ?? ''),
+                      subtitle: Text(state[index].isVolumetricWeight ?? ''),
+                    ),
                   );
                 });
           }

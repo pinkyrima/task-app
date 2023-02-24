@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import 'package:task_app/src/model/test_model.dart';
+
+import '../model/test_model_2.dart';
 
 class ApiService {
   static Future <TaskModel> fetchData() async {

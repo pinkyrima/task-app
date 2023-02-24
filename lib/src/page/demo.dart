@@ -9,26 +9,29 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TestCubit, List<ConsignmentChargesRequestParam>>(
-      builder: (context, data) {
-        // Use the data to build your UI
-        return ListView.builder(
-          itemCount: data.length,
-          itemBuilder: (context, index) {
-            final item = data[index];
-            return ListTile(
-              title: Text(
-                item.heightValue,
-                style: const TextStyle(color: Colors.pink, fontSize: 30),
-              ),
-              subtitle: Text(
-                item.isDhakaCity,
-                style: const TextStyle(color: Colors.pink, fontSize: 20),
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Task App'),
+        centerTitle: true,
+      ),
+      body: BlocBuilder<TestCubit, List<ConsignmentChargesRequestParam>>(
+        builder: (context, state) {
+          if (state.isEmpty) {
+            return const Center(
+              child: CircularProgressIndicator(),
             );
-          },
-        );
-      },
+          } else {
+            return ListView.builder(
+                itemCount: state.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(state[index].heightValue),
+                    subtitle: Text(state[index].isVolumetricWeight),
+                  );
+                });
+          }
+        },
+      ),
     );
 
     //   BlocBuilder<TestCubit, List<TaskModel>>(

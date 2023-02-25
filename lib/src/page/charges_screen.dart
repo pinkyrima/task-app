@@ -11,76 +11,89 @@ class ChargesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: BlocBuilder<TestCubit, List<TaskModel>>(
-      builder: (context, state) {
-        if (state.isEmpty) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else {
-          return SafeArea(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              children: [
-                Text(
-                  'Charges',
-                  style: KTextStyle.headline5.copyWith(color: KColor.grey),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-
-                buildCard('Order Id',
-                    state[0].consignmentChargesRequestParams![0].oid ?? ''),
-                buildCard(
-                    'Request Type',
-                    state[0]
-                            .consignmentChargesRequestParams![0]
-                            .requestTypeId ??
-                        ''),
-                buildCard(
-                    'Service Type',
-                    state[0]
-                            .consignmentChargesRequestParams![0]
-                            .serviceTypeId ??
-                        ''),
-                buildCard(
-                    'Category',
-                    state[0].consignmentChargesRequestParams![0].categoryId ??
-                        'Data Not Found'),
-                buildCard(
-                    'Packaging',
-                    state[0].consignmentChargesRequestParams![0].isPackaging ??
-                        ''),
-                buildCard(
-                    'Packaging Id',
-                    state[0].consignmentChargesRequestParams![0].packagingId ??
-                        'Data Not Found'),
-                const SizedBox(
-                  height: 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Task App'),
+        ),
+        body: BlocBuilder<TestCubit, List<TaskModel>>(
+          builder: (context, state) {
+            if (state.isEmpty) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return SafeArea(
+                child: ListView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   children: [
-                    Text(
-                      'Thank You',
-                      style:
-                          KTextStyle.headline6.copyWith(color: KColor.primary),
+                    const SizedBox(
+                      height: 20,
                     ),
-                    Image.asset(
-                      'assets/images/smiley.png',
+                    Text(
+                      'Charges',
+                      style: KTextStyle.headline5.copyWith(color: KColor.grey),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+
+                    buildCard('Order Id',
+                        state[0].consignmentChargesRequestParams![0].oid ?? ''),
+                    buildCard(
+                        'Request Type',
+                        state[0]
+                                .consignmentChargesRequestParams![0]
+                                .requestTypeId ??
+                            ''),
+                    buildCard(
+                        'Service Type',
+                        state[0]
+                                .consignmentChargesRequestParams![0]
+                                .serviceTypeId ??
+                            ''),
+                    buildCard(
+                        'Category',
+                        state[0]
+                                .consignmentChargesRequestParams![0]
+                                .categoryId ??
+                            'Data Not Found'),
+                    buildCard(
+                        'Packaging',
+                        state[0]
+                                .consignmentChargesRequestParams![0]
+                                .isPackaging ??
+                            ''),
+                    buildCard(
+                        'Packaging Id',
+                        state[0]
+                                .consignmentChargesRequestParams![0]
+                                .packagingId ??
+                            'Data Not Found'),
+                    const SizedBox(
                       height: 50,
-                      width: 50,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Thank You',
+                          style: KTextStyle.headline6
+                              .copyWith(color: KColor.primary),
+                        ),
+                        Image.asset(
+                          'assets/images/smiley.png',
+                          height: 50,
+                          width: 50,
+                        )
+                      ],
                     )
+                    // ListTile(title: const Text('Thank You'),trailing: Image.asset('assets/images/smiley.png'))
                   ],
-                )
-                // ListTile(title: const Text('Thank You'),trailing: Image.asset('assets/images/smiley.png'))
-              ],
-            ),
-          );
-        }
-      },
-    ));
+                ),
+              );
+            }
+          },
+        ));
   }
 
   Card buildCard(String title, String subTitle) {

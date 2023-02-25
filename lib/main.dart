@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<TestCubit>(
-          create: (_) => TestCubit(),
+          create: (_) => TestCubit()..loadJsonData(),
         ),
       ],
       child: MaterialApp(
@@ -26,10 +26,11 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: BlocProvider(
-          create: (context) => TestCubit()..loadJsonData(),
-          child: HomePage(),
-        ),
+        home: HomePage(),
+        // home: BlocProvider(
+        //   create: (context) => TestCubit()..loadJsonData(),
+        //   child: HomePage(),
+        // ),
       ),
     );
   }
